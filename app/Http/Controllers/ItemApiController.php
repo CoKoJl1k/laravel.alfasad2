@@ -2,7 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Item;
 use App\Repositories\Interfaces\itemRepositoryInterface;
 use App\Services\itemService;
 use Illuminate\Http\Request;

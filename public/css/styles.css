@@ -8,10 +8,18 @@
     padding: 10px;
     border: 1px solid;
     text-align: center;
+    font-family: sans-serif;
 }
 .table-cell {
     background-color: #f9f9f9;
     padding: 10px;
     border: 1px solid;
     text-align: center;
+    font-family: sans-serif;
+}
+.table-title{
+    padding: 20px 40px 20px 40px;
+}
+.btn .btn-primary .btn-lg{
+    padding-left: 40px;
 }
