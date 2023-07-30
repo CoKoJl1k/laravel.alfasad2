@@ -1,5 +1,5 @@
 <?php
-
+/*
 namespace App\Http\Controllers;
 
 use App\Models\User;
@@ -45,8 +45,7 @@ class AuthController extends Controller
             'token_type' => 'Bearer',
         ]);
     }
-
     public function whoami(Request $request) {
         return $request->user();
     }
-}
+}*/

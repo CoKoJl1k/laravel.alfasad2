@@ -4,7 +4,7 @@
 namespace App\Repositories\Interfaces;
 
 
-interface UrlRepositoryInterface
+interface ItemRepositoryInterface
 {
     public function all();
     public function getById($id);

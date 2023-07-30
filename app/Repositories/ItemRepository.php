@@ -1,29 +1,28 @@
 <?php
 
 namespace App\Repositories;
-use App\Models\Url;
-use App\Repositories\Interfaces\UrlRepositoryInterface;
-use Illuminate\Support\Facades\DB;
+use App\Models\Item;
+use App\Repositories\Interfaces\ItemRepositoryInterface;
 
-class UrlRepository implements UrlRepositoryInterface
+class ItemRepository implements ItemRepositoryInterface
 {
     public function all()
     {
-        return Url::all();
+        return Item::all();
     }
 
     public function getById($id)
     {
-        return Url::find($id);
+        return Item::find($id);
     }
 
     public function getByName(string $name)
     {
-        return Url::where('name', $name)->get();
+        return Item::where('name', $name)->get();
     }
 
-    public function insert(array $url)
+    public function create(array $url)
     {
-        return  Url::create($url);
+        return  Item::create($url);
     }
 }

@@ -14,9 +14,9 @@ class AddAutoInscrimentToItemsTable extends Migration
      */
     public function up()
     {
-//        Schema::table('items', function (Blueprint $table) {
-//            DB::statement('ALTER TABLE `items`MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1643;');
-//        });
+        Schema::table('items', function (Blueprint $table) {
+            DB::statement('ALTER TABLE `items`MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1643;');
+        });
     }
 
     /**

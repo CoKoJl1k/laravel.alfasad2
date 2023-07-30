@@ -14,9 +14,9 @@ class AddPrimaryKeyToItemsTable extends Migration
      */
     public function up()
     {
-//        Schema::table('items', function (Blueprint $table) {
-//            $table->primary('id');
-//        });
+        Schema::table('items', function (Blueprint $table) {
+            $table->primary('id');
+        });
     }
 
     /**

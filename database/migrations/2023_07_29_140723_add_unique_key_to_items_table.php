@@ -13,9 +13,9 @@ class AddUniqueKeyToItemsTable extends Migration
      */
     public function up()
     {
-//        Schema::table('items', function (Blueprint $table) {
-//            $table->unique('uuid');
-//        });
+        Schema::table('items', function (Blueprint $table) {
+            $table->unique('uuid');
+        });
     }
 
     /**
@@ -25,8 +25,8 @@ class AddUniqueKeyToItemsTable extends Migration
      */
     public function down()
     {
-//        Schema::table('items', function (Blueprint $table) {
-//            $table->dropUnique('items_uuid_unique');
-//        });
+        Schema::table('items', function (Blueprint $table) {
+            $table->dropUnique('items_uuid_unique');
+        });
     }
 }

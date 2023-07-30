@@ -3,31 +3,20 @@
 namespace App\Http\Controllers;
 
 use App\Models\Item;
+use App\Repositories\Interfaces\itemRepositoryInterface;
+use App\Services\itemService;
 use Illuminate\Http\Request;
 
 class ItemApiController extends Controller
 {
-    /**
-     * Create a new controller instance.
-     *
-     * @return void
-     */
-    public function __construct()
-    {
-        //$this->middleware('auth');
-    }
 
-    /**
-     * Show the application dashboard.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
+    public ItemRepositoryInterface $itemRepository;
+    public ItemService $itemService;
+
+    public function __construct(ItemService $itemService, ItemRepositoryInterface $itemRepository)
     {
-        return response()->json([
-            'status' => 'success',
-            'errors ' => array('index ')
-        ]);
+        $this->itemRepository = $itemRepository;
+        $this->itemService = $itemService;
     }
 
     /**
@@ -42,19 +31,28 @@ class ItemApiController extends Controller
         $xml = simplexml_load_string($bodyContent);
         $jsonItem = json_encode($xml);
         $arrItem = json_decode($jsonItem, 1);
-        $item = new Item();
-        $item->uuid = $arrItem['uuid'];
-        $item->name = $arrItem['name'];
-        $item->amount = $arrItem['amount'];;
-        $item->price = $arrItem['price'];
-        $item->save();
 
-        $items = Item::all();
+        $item = [
+            'uuid' =>  $arrItem['uuid'],
+            'name' =>  $arrItem['name'],
+            'amount' =>  $arrItem['amount'],
+            'price' =>  $arrItem['price']
+        ];
+        $errors = $this->itemService->validate($item);
+
+        if(!empty($errors['message'])) {
+            return response()->json([
+                'status' => 'fail',
+                'msg' =>  $errors['message']
+            ]);
+        }
+        $this->itemRepository->create($item);
+        $items = $this->itemRepository->all();
 
         return response()->json([
             'status' => 'success',
-            'items' => $items,
+            'msg' =>  'Данные успешно сохранены.',
+            'items' => $items
         ]);
     }
-
 }
